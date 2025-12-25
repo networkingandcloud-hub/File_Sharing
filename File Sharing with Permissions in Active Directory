@@ -1,0 +1,157 @@
+File Sharing with Permissions in Active Directory
+Requirement
+
+Windows Server with Active Directory Domain Services
+
+Domain Users created
+
+Client machine joined to domain
+
+Logged in as Domain Administrator
+
+PART 1: Create Folder for Sharing
+Step 1: Create Folder
+
+Login to Domain Controller
+
+Create a folder
+Example:
+
+C:\SharedData
+
+PART 2: Configure NTFS (Security) Permissions
+Step 1: Open Folder Properties
+
+Right-click SharedData
+
+Click Properties
+
+Go to Security tab
+
+Step 2: Add Domain Users / Groups
+
+Click Edit
+
+Click Add
+
+Enter:
+
+Domain Users
+
+
+Click Check Names
+
+Click OK
+
+Step 3: Set Permissions
+
+Assign permissions based on requirement:
+
+Read Only Access
+
+Allow: Read & Execute
+
+Allow: List folder contents
+
+Allow: Read
+
+Read and Write Access
+
+Allow: Modify
+
+Allow: Read & Execute
+
+Allow: Write
+
+Click Apply and OK
+
+PART 3: Configure Share Permissions
+Step 1: Share the Folder
+
+Right-click SharedData
+
+Click Properties
+
+Go to Sharing tab
+
+Click Advanced Sharing
+
+Check Share this folder
+
+Share Name:
+
+SharedData
+
+Step 2: Set Share Permissions
+
+Click Permissions
+
+Remove Everyone (optional)
+
+Add:
+
+Domain Users
+
+
+Set permissions:
+
+Read → Read access
+
+Modify → Change access
+
+Click OK
+
+Important Note
+
+Final permission = Lowest permission between NTFS and Share permissions
+
+PART 4: Access Shared Folder from Client Machine
+Step 1: Login from Client
+
+Login to client PC using domain user account
+
+Step 2: Access Share
+
+Press Windows + R
+
+Enter:
+
+\\SERVERNAME\SharedData
+
+
+Press Enter
+
+PART 5: Verify Permissions
+Test Read-Only User
+
+Can open files
+
+Cannot create or delete files
+
+Test Read-Write User
+
+Can create files
+
+Can modify and delete files
+
+PART 6: Best Practice (Using Groups)
+Create Security Groups
+
+Open Active Directory Users and Computers
+
+Create Groups:
+
+File_Read
+File_Modify
+
+Assign Permissions
+
+Assign permissions to Groups
+
+Add users to groups
+
+Avoid assigning permissions directly to users
+
+Conclusion
+
+File Sharing with proper permissions has been successfully configured in Active Directory environment.
